@@ -1,10 +1,7 @@
 name = "codelog-ai"
 main = "src/worker.ts"
 compatibility_date = "2024-01-01"
+account_id = "3c021023090d49e7bebf0d3e9a45a717"
 
 [vars]
-AGENT_NAME = "CodeLog.ai"
-
-[[kv_namespaces]]
-binding = "KV"
-id = "9302b5a864e4406ba6afb07405fdf201"
+AGENT_NAME = "Codelog.ai"
