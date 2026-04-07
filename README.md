@@ -1,59 +1,44 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/Lucineer/capitaine/master/docs/capitaine-logo.jpg" alt="Capitaine" width="120">
-</p>
+# CodeLog.ai
 
-<h1 align="center">codelog-ai</h1>
+You stop mid-debug. You had the fix, the note you wrote for yourself. And it's gone. Buried in Slack, a closed tab, your terminal history.
 
-<p align="center">Code Journal — AI-powered code documentation companion.</p>
+This is a local notebook for your code. It runs where you deploy it, with your keys.
+
+**Live instance:** https://codelog-ai.casey-digennaro.workers.dev
 
 ---
 
-**Vessel stub** · Needs `worker.ts` to deploy · Part of the [Lucineer fleet](https://github.com/orgs/Lucineer/repositories)
+## What it is
+A Cloudflare Worker that gives you a personal API for logging and querying code snippets, debugging notes, and errors. It uses your AI provider keys to add context and search. You fork it, you own it, you modify it.
 
-## Status
+## How it works
+- Deploys as a single Cloudflare Worker. No databases, no build steps, zero runtime npm dependencies.
+- Follows a fork-first philosophy. You deploy your own copy in under a minute.
+- Is Fleet-native, compatible with other agents in the Cocapn ecosystem.
+- All logic runs on your worker; your API keys never leave your environment.
 
-🟡 Hull not yet deployed. Fork and add a `worker.ts` to bring this vessel online.
+**One Limitation:** It's stateless by default. Snippets are stored in-memory and reset on each worker cold boot. For persistence, you need to add your own storage binding (like KV).
 
-## The Fleet
+## Quick Start
+1.  Fork this repository.
+2.  Deploy it to Cloudflare Workers.
+3.  Add your `AI_PROVIDER_KEY` as a Worker environment variable.
 
+## What you can do
+- **Log snippets:** Send code fragments with tags and notes via a simple POST request.
+- **Query context:** Ask questions about your logged code to find past solutions.
+- **Analyze errors:** Post error logs for structured root-cause analysis.
+- **Call from anywhere:** Use its clean API from your editor, CLI, or CI.
 
-<details>
-<summary><strong>⚓ The Fleet</strong></summary>
+## Bring your own keys
+Set your `AI_PROVIDER_KEY` (e.g., from OpenAI, Anthropic, or Groq) as a secret in your Worker's environment variables. No model keys are bundled or shared.
 
-**Flagship vessels**
+## Contributing
+Improve your own fork first. If you have a change that fits the zero-dependency, single-worker model, open a pull request.
 
-- [cocapn.ai](https://github.com/Lucineer/capitaine)
-- [personallog.ai](https://github.com/Lucineer/personallog-ai)
-- [businesslog.ai](https://github.com/Lucineer/businesslog-ai)
-- [studylog.ai](https://github.com/Lucineer/studylog-ai)
-- [makerlog.ai](https://github.com/Lucineer/makerlog-ai)
-- [playerlog.ai](https://github.com/Lucineer/playerlog-ai)
-- [dmlog.ai](https://github.com/Lucineer/dmlog-ai)
-- [reallog.ai](https://github.com/Lucineer/reallog-ai)
-- [deckboss.ai](https://github.com/Lucineer/deckboss-ai)
+MIT License · Superinstance & Lucineer (DiGennaro et al.)
 
-**Fleet services**
-
-- [Fleet Catalog](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
-- [Git Agent (full)](https://github.com/Lucineer/git-agent)
-- [Cocapn Lite (minimal)](https://github.com/Lucineer/cocapn-lite)
-- [Fleet Orchestrator](https://github.com/Lucineer/fleet-orchestrator)
-- [Dead Reckoning Engine](https://github.com/Lucineer/dead-reckoning-engine)
-- [Dream Engine](https://github.com/Lucineer/dream-engine)
-- [Seed UI (5 layers)](https://github.com/Lucineer/seed-ui)
-
-**For power users**
-
-- [Cocapn Lite (tabula rasa)](https://github.com/Lucineer/cocapn-lite)
-- [Cocapn (core platform)](https://github.com/Lucineer/cocapn)
-- [ZeroClaw (framework)](https://github.com/Lucineer/zeroclaw)
-
-[View all 106 repos →](https://github.com/orgs/Lucineer/repositories)
-[Fleet manifest →](https://github.com/Lucineer/capitaine/blob/master/docs/fleet/FLEET.md)
-
-</details>
-
-
-## License
-
-MIT · Superinstance & Lucineer (DiGennaro et al.)
+---
+<div align="center">
+  <a href="https://the-fleet.casey-digennaro.workers.dev">The Fleet</a> · <a href="https://cocapn.ai">Cocapn</a>
+</div>
