@@ -1,44 +1,65 @@
-# CodeLog.ai
+# codelog-ai ✏️
 
-You stop mid-debug. You had the fix, the note you wrote for yourself. And it's gone. Buried in Slack, a closed tab, your terminal history.
+You stop mid-debug. You had the fix, a note for yourself. Now it’s gone—buried in Slack, a closed tab, your terminal history.
 
-This is a local notebook for your code. It runs where you deploy it, with your keys.
+This is your private notebook for code. It runs where you deploy it, with only your keys.
 
-**Live instance:** https://codelog-ai.casey-digennaro.workers.dev
+**Live demo:** https://codelog-ai.casey-digennaro.workers.dev
 
 ---
 
-## What it is
-A Cloudflare Worker that gives you a personal API for logging and querying code snippets, debugging notes, and errors. It uses your AI provider keys to add context and search. You fork it, you own it, you modify it.
+## Why
 
-## How it works
-- Deploys as a single Cloudflare Worker. No databases, no build steps, zero runtime npm dependencies.
-- Follows a fork-first philosophy. You deploy your own copy in under a minute.
-- Is Fleet-native, compatible with other agents in the Cocapn ecosystem.
-- All logic runs on your worker; your API keys never leave your environment.
+Every developer loses debug notes. You shouldn’t keep them on someone else’s server or inside a paid tool. This runs on your Cloudflare account, period.
 
-**One Limitation:** It's stateless by default. Snippets are stored in-memory and reset on each worker cold boot. For persistence, you need to add your own storage binding (like KV).
+---
 
 ## Quick Start
-1.  Fork this repository.
-2.  Deploy it to Cloudflare Workers.
-3.  Add your `AI_PROVIDER_KEY` as a Worker environment variable.
 
-## What you can do
-- **Log snippets:** Send code fragments with tags and notes via a simple POST request.
-- **Query context:** Ask questions about your logged code to find past solutions.
-- **Analyze errors:** Post error logs for structured root-cause analysis.
-- **Call from anywhere:** Use its clean API from your editor, CLI, or CI.
-
-## Bring your own keys
-Set your `AI_PROVIDER_KEY` (e.g., from OpenAI, Anthropic, or Groq) as a secret in your Worker's environment variables. No model keys are bundled or shared.
-
-## Contributing
-Improve your own fork first. If you have a change that fits the zero-dependency, single-worker model, open a pull request.
-
-MIT License · Superinstance & Lucineer (DiGennaro et al.)
+1.  **Fork** this repository.
+2.  **Deploy** to Cloudflare Workers with the “Deploy with Workers” button.
+3.  Add your `AI_PROVIDER_KEY` as a Worker secret. Setup is done.
 
 ---
-<div align="center">
-  <a href="https://the-fleet.casey-digennaro.workers.dev">The Fleet</a> · <a href="https://cocapn.ai">Cocapn</a>
-</div>
+
+## What It Does
+
+*   Log code snippets, debug steps, or ideas with tags from your editor or terminal.
+*   Ask plain-language questions to find notes from weeks ago.
+*   Paste error output for structured breakdowns.
+*   Call it via a simple REST API from CLI, git hooks, or scripts.
+*   Use in-memory storage by default; attach a KV namespace for persistence when you need it.
+
+---
+
+## One Honest Limitation
+
+On Cloudflare Workers’ free tier, each request has a 10ms CPU time limit. Complex queries or large context windows may hit this limit unless you upgrade to a paid Workers plan.
+
+---
+
+## How It Works
+
+A single Cloudflare Worker script. Zero npm dependencies. No external servers, no telemetry. Your API keys go directly from your Worker to your chosen LLM provider.
+
+---
+
+## What Makes It Different
+
+1.  **No middleman.** It runs exclusively on your Cloudflare account.
+2.  **No lock-in.** Your data is always yours and exportable.
+3.  **No bloat.** No accounts, teams, onboarding, or upsells. It’s a notebook.
+
+---
+
+## Bring Your Own Keys
+
+Use OpenAI, Anthropic, Groq, or any compatible LLM API. No keys are bundled or shared.
+
+---
+
+MIT License
+
+Original work: Superinstance and Lucineer (DiGennaro et al.)
+
+<div style="text-align:center;padding:16px;color:#64748b;font-size:.8rem"><a href="https://the-fleet.casey-digennaro.workers.dev" style="color:#64748b">The Fleet</a> &middot; <a href="https://cocapn.ai" style="color:#64748b">Cocapn</a></div>
